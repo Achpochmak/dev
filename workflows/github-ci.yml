@@ -1,0 +1,45 @@
+stages:
+  - build
+  - test
+  - deploy
+
+variables:
+  APP_VERSION: "latest"
+  DOCKER_DRIVER: overlay2
+
+before_script:
+  - docker info
+
+build_images:
+  stage: build
+  tags:
+    - docker
+  script:
+    - docker build -t frontend:$APP_VERSION ./frontend
+    - docker build -t backend:$APP_VERSION ./backend
+    - docker build -t orders:$APP_VERSION ./orders
+    - docker build -t nginx:$APP_VERSION ./nginx
+
+test_backend:
+  stage: test
+  tags:
+    - docker
+  script:
+    - cd backend
+    - pip install -r requirements.txt
+    - pytest tests/test_api.py
+
+deploy_app:
+  stage: deploy
+  tags:
+    - docker
+  script:
+    - docker compose down || true
+    - docker compose up -d --build
+  only:
+    - main
+    
+docker_login:
+  stage: build
+  script:
+    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"

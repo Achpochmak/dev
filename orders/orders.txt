@@ -1,0 +1,2 @@
+{"product_id": 123, "quantity": 2, "user": "ksenia"}
+{"product_id": 123, "quantity": 2, "user": "ksenia"}
