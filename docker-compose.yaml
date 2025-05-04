@@ -1,19 +1,19 @@
 version: '3.8'
 
 services:
-  gitlab:
-    image: gitlab/gitlab-ce:latest
-    restart: always
-    hostname: 'localhost'
-    container_name: gitlab
-    ports:
-      - '8080:80'
-      - '4443:443'
-      - '2222:22'
-    volumes:
-      - './config:/etc/gitlab'
-      - './logs:/var/log/gitlab'
-      - './data:/var/opt/gitlab'
+  # gitlab:
+  #   image: gitlab/gitlab-ce:latest
+  #   restart: always
+  #   hostname: 'localhost'
+  #   container_name: gitlab
+  #   ports:
+  #     - '8080:80'
+  #     - '4443:443'
+  #     - '2222:22'
+  #   volumes:
+  #     - './config:/etc/gitlab'
+  #     - './logs:/var/log/gitlab'
+  #     - './data:/var/opt/gitlab'
   nginx:
     image: nginx:latest
     ports:
