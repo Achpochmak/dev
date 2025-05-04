@@ -39,6 +39,8 @@ services:
 
   backend1:
     build: ./backend
+    ports:
+      - "5000:5000"
     restart: always
 
   backend2:
