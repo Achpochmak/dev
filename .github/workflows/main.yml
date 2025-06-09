@@ -6,13 +6,7 @@ on:
       - master
   pull_request:
 
-jobs:
-  docker_login:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Log in to Docker Hub
-        run: echo "${{ secrets.CI_REGISTRY_PASSWORD }}" | docker login -u "${{ secrets.CI_REGISTRY_USER }}" --password-stdin
-        
+jobs:  
   build:
     runs-on: ubuntu-latest
     steps:
